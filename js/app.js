@@ -38,15 +38,11 @@ let queuedSetActive = null;
  * @param {Element} element DOM element to compare with viewport
  * @returns {bool}
  */
-const isInViewport = (element) => {
-  const elementRect = element.getBoundingClientRect();
+const isNearViewportTop = (element) => {
+  // const elementRect = element.getBoundingClientRect();
   return (
-    elementRect.top >= 0 &&
-    elementRect.left >= 0 &&
-    elementRect.bottom <=
-      (window.innerHeight || document.documentElement.clientHeight) &&
-    elementRect.right <=
-      (window.innerWidth || document.documentElement.clientWidth)
+    window.scrollY < element.offsetTop &&
+    element.offsetTop < window.scrollY + 400
   );
 };
 
@@ -105,10 +101,10 @@ const createNavigationBar = () => {
 const makeSectionActive = () => {
   let topSection = [null, Number.POSITIVE_INFINITY];
   for (const section of sections) {
-    if (!isInViewport(section)) continue;
+    if (!isNearViewportTop(section)) continue;
     const distanceToTop =
       window.pageYOffset + section.getBoundingClientRect().top;
-    if (distanceToTop < topSection[1]) topSection = [section, distanceToTop];
+    if (topSection[1] > distanceToTop) topSection = [section, distanceToTop];
   }
   if (topSection[0] === activeSection || !topSection[0]) return;
   if (activeSection) {
