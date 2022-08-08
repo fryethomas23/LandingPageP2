@@ -39,7 +39,6 @@ let queuedSetActive = null;
  * @returns {bool}
  */
 const isNearViewportTop = (element) => {
-  // const elementRect = element.getBoundingClientRect();
   return (
     window.scrollY < element.offsetTop &&
     element.offsetTop < window.scrollY + 400
@@ -70,12 +69,8 @@ const debounceCallback = (prevCallbackId, newCallback) => {
  * Builds the navigation bar from the present sections
  */
 const createNavigationBar = () => {
-  navBar.style.cssText = `
-            display: flex;
-            flex-direction: row;
-        `;
   for (const section of sections) {
-    const sectionHeaderText = section.querySelectorAll("h2")[0].innerText;
+    const sectionHeaderText = section.querySelector("h2").innerText;
     const sectionNumber = section.dataset.nav.split(" ").pop();
 
     const navItem = document.createElement("li");

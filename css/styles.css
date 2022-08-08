@@ -68,6 +68,9 @@ section {
     padding-left: 0;
     margin: 0;
     text-align: right;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .navbar__menu li {
