@@ -40,7 +40,7 @@ let queuedSetActive = null;
  */
 const isNearViewportTop = (element) => {
   return (
-    window.scrollY < element.offsetTop &&
+    window.scrollY <= element.offsetTop &&
     element.offsetTop < window.scrollY + 400
   );
 };
