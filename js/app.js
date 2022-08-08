@@ -39,13 +39,14 @@ let queuedSetActive = null;
  * @returns {bool}
  */
 const isInViewport = (element) => {
-  const rect = element.getBoundingClientRect();
+  const elementRect = element.getBoundingClientRect();
   return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <=
+    elementRect.top >= 0 &&
+    elementRect.left >= 0 &&
+    elementRect.bottom <=
       (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    elementRect.right <=
+      (window.innerWidth || document.documentElement.clientWidth)
   );
 };
 
